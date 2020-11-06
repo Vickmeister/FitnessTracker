@@ -1,6 +1,17 @@
-const Workout = require("../models/workout.js")
+const Workout = require("../public/workout.js")
 
 module.exports = function (app) {
+
+    app.get("/api/workouts", function(req, res) {
+        Workout.find({
+          where: {
+            category: req.params.category
+          }
+        })
+          .then(function(db) {
+            res.json(dbPost);
+          });
+      });
 
     app.get("/api/workouts", function (req, res) {
         Workout.find()
