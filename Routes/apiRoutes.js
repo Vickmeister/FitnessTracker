@@ -2,16 +2,15 @@ const Workout = require("../public/workout.js")
 
 module.exports = function (app) {
 
-    app.get("/api/workouts", function(req, res) {
-        Workout.find({
-          where: {
-            category: req.params.category
-          }
+    app.get("/api/workouts/range",function(req,res){  
+        Workout.find()
+        .then(data =>{  
+            res.json(data)
         })
-          .then(function(db) {
-            res.json(dbPost);
-          });
-      });
+        .catch(err => { 
+            res.json(err)
+        })
+    });
 
     app.get("/api/workouts", function (req, res) {
         Workout.find()
